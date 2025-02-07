@@ -1,6 +1,6 @@
 # 🔍 CTF Writeups Search
 
-A fast and efficient search engine for CTF (Capture The Flag) writeups and solutions, powered by Typesense. Search through a curated collection of 1,000+ CTF writeups with instant results and smart filtering.
+A fast and efficient search engine for CTF (Capture The Flag) writeups and solutions, powered by Typesense. Search through a curated collection of 25,000+ CTF writeups with instant results and smart filtering.
 
 View it live here: [https://ctfsearch.hackmap.win](https://ctfsearch.hackmap.win)
 
