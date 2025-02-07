@@ -2,7 +2,7 @@
 
 A fast and efficient search engine for CTF (Capture The Flag) writeups and solutions, powered by Typesense. Search through a curated collection of 1,000+ CTF writeups with instant results and smart filtering.
 
-View it live here: [https://writeups.hackmap.win](https://writeups.hackmap.win)
+View it live here: [https://ctfsearch.hackmap.win](https://ctfsearch.hackmap.win)
 
 ## Features
 
