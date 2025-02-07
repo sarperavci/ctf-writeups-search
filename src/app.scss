@@ -1,0 +1,51 @@
+html {
+  scroll-behavior: smooth;
+}
+
+// Flush footer
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 50px; // Controls spacing from content to footer
+}
+
+footer.navbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: $gray-100;
+  border-top: 1px solid $gray-200;
+  padding: 0.75rem 0;
+  
+  .navbar-text {
+    color: $gray-600;
+    font-size: 0.9rem;
+    
+    a {
+      color: $gray-700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .text-md-right {
+      text-align: center !important;
+    }
+    
+    .navbar-text {
+      display: block;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+  }
+}
+
+// End flush footer

@@ -1,0 +1,339 @@
+@import 'bootstrap';
+@import 'app';
+
+.search-result-card {
+  min-height: 150px;
+  font-size: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid $gray-200;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $box-shadow-sm;
+  }
+
+  .modal {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    min-height: 125px;
+  }
+
+  .content-preview {
+    font-size: 0.9rem;
+    color: $gray-600;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media (min-width: 768px) {
+  #filters-section.d-md-block {
+    display: block !important;
+  }
+}
+
+a.clickable-search-term {
+  color: $primary;
+  text-decoration: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: $border-radius-sm;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: rgba($primary, 0.1);
+    text-decoration: none;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 10px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+}
+
+mark {
+  color: unset;
+  background-color: rgba(darken($secondary, 5%), .7);
+  padding: 0 0.08em;
+}
+
+.ais-SearchBox-loadingIndicator {
+  position: absolute;
+  top: 21px;
+  right: 60px;
+}
+
+@media (max-width: 1200px) {
+  h1, .h1 {
+    font-size: calc(1.2rem + 1.2vw);
+  }
+
+  h4, .h4 {
+    font-size: calc(1.0rem + 0.12vw);
+  }
+}
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  .container {
+    padding-bottom: 160px; // Further increased space for footer
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  .lead {
+    font-size: 1rem;
+  }
+  
+  #searchbox input {
+    font-size: 16px; // Prevent zoom on iOS
+  }
+  
+  .btn-primary.ais-InfiniteHits-loadMore {
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0.75rem;
+    border-radius: 4px;
+  }
+
+  #hits {
+    margin-bottom: 60px; // Space between results and footer
+  }
+
+  // Ensure footer stays on top but doesn't overlap content
+  .site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: var(--footer-bg);
+    border-top: 1px solid var(--footer-border);
+    padding: 0.5rem 0;
+    
+    .container {
+      padding: 0 0.5rem;
+    }
+    
+    .row.w-100 {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      > div {
+        padding: 0;
+        flex: 0 0 auto;
+        width: auto;
+        text-align: center;
+      }
+    }
+    
+    .navbar-text {
+      margin: 0;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        
+        i {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  // Adjust About section spacing on mobile
+  .row.mb-5 {
+    margin-bottom: 0 !important; // Override default margin
+    
+    .card {
+      margin-bottom: 160px; // Add space below the card
+    }
+  }
+
+  .row.text-center.mt-4 {
+    .col-md-4 {
+      margin-bottom: 2rem;
+      
+      &:last-child {
+        margin-bottom: 2rem; // Add margin to last item to ensure visibility
+      }
+      
+      i.fa-2x {
+        font-size: 1.75rem;
+      }
+      
+      h5 {
+        font-size: 1.1rem;
+        margin: 0.5rem 0;
+      }
+      
+      p.small {
+        font-size: 0.9rem;
+        margin: 0;
+        padding: 0 1rem;
+      }
+    }
+  }
+}
+
+// Search box styling
+.ais-SearchBox-form {
+  position: relative;
+}
+
+.ais-SearchBox-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid $gray-300;
+  border-radius: $border-radius;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+}
+
+.ais-SearchBox-submit,
+.ais-SearchBox-reset {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: $gray-500;
+  
+  &:hover {
+    color: $primary;
+  }
+}
+
+.ais-SearchBox-submit {
+  right: 40px;
+}
+
+.ais-SearchBox-reset {
+  right: 10px;
+}
+
+// Light theme (default)
+:root[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #212529;
+  --card-bg: #ffffff;
+  --card-border: #e9ecef;
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --badge-bg: #e9ecef;
+  --badge-color: #666;
+  --footer-bg: #f8f9fa;
+  --footer-border: #dee2e6;
+  --search-border: #ced4da;
+  --search-focus: #007bff;
+}
+
+// Dark theme
+:root[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #e1e1e1;
+  --card-bg: #242424;
+  --card-border: #333;
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --badge-bg: #333;
+  --badge-color: #e1e1e1;
+  --footer-bg: #242424;
+  --footer-border: #333;
+  --search-border: #333;
+  --search-focus: #0056b3;
+}
+
+// Apply theme variables
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+.badge-secondary {
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+}
+
+footer.navbar {
+  background-color: var(--footer-bg);
+  border-color: var(--footer-border);
+}
+
+.ais-SearchBox-input {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--search-border);
+  
+  &:focus {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--search-focus);
+  }
+}
+
+// Update existing hover states
+a.clickable-search-term:hover {
+  background-color: var(--hover-bg);
+}
+
+.search-result-card:hover {
+  background-color: var(--card-bg);
+}
+
+// Theme toggle icon styles
+#theme-toggle {
+  .fa-sun {
+    display: none;
+  }
+  .fa-moon {
+    display: inline-block;
+  }
+}
+
+[data-theme="dark"] #theme-toggle {
+  .fa-sun {
+    display: inline-block;
+  }
+  .fa-moon {
+    display: none;
+  }
+}
+
+// Ensure footer stays on top
+.site-footer {
+  background-color: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+}
+
+// Hide disabled "Show More" button
+.ais-InfiniteHits-loadMore--disabled {
+  display: none !important;
+}

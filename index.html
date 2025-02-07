@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const defaultTheme = prefersDark ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', defaultTheme);
+      }
+    })();
+  </script>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="shortcut icon" href="./favicon.png">
+
+  <link rel="stylesheet" href="./src/index.scss">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <title>Search CTF Writeups</title>
+  <meta name="description" content="Search CTF Writeups and Solutions">
+  <meta name="keywords" content="ctf, writeups, security, hacking, web exploitation, reverse engineering"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://writeups.hackmap.win">
+  <meta property="og:title" content="Search CTF Writeups and Solutions">
+  <meta property="og:description" content="Search through 24,000+ CTF writeups and solutions with instant results and smart filtering. Find Web Exploitation, Buffer Overflow, Reverse Engineering writeups and more."/>
+  <!-- <meta property="og:image" content="./images/opengraph_banner.png"> -->
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Add structured data for search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CTF Writeups Search",
+    "description": "Search engine for CTF writeups and solutions",
+    "url": "https://writeups.hackmap.win",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://writeups.hackmap.win?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="ce33ec21-bec8-4167-8b4c-807320ebb934"></script>
+</head>
+
+<body>
+<div class="container">
+  <div class="row mt-4 mb-3">
+    <div class="col-md">
+      <header class="site-header">
+        <div class="row">
+          <div class="col-md">
+            <h1 class="text-center">
+              Search CTF Writeups
+            </h1>
+            <p class="text-center text-muted lead">
+              Find and explore CTF solutions and writeups
+            </p>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="row mb-3">
+    <div class="col-md-8 mx-auto">
+      <div class="text-center text-muted">
+        <small>
+          <i class="fas fa-database"></i> Database size: <span>24,000+</span> writeups
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Box -->
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <div id="searchbox" class="shadow-sm" role="search" aria-label="Search CTF writeups"></div>
+      <div id="stats" class="text-muted small text-center mt-2"></div>
+      <div class="mt-3 text-center" aria-label="Example search terms">
+        <small class="text-muted">Try searching for: </small>
+        <nav aria-label="Example searches">
+          <a role="button" class="clickable-search-term" aria-label="Search Web Exploitation">Web Exploitation</a>
+          <a role="button" class="clickable-search-term" aria-label="Search Buffer Overflow">Buffer Overflow</a>
+          <a role="button" class="clickable-search-term" aria-label="Search Reverse Engineering">Reverse Engineering</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="card-title mb-0">About this Search</h4>
+            <button id="hide-about" class="btn btn-sm btn-link">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <p class="card-text">
+            This search engine allows you to explore CTF (Capture The Flag) writeups and solutions from a curated collection. 
+            It's powered by <a href="https://typesense.org" target="_blank" rel="noopener">Typesense</a>, 
+            an open-source search engine that provides fast and typo-tolerant search capabilities.
+          </p>
+        
+          <div class="row text-center mt-4">
+            <div class="col-md-4 mb-3">
+              <i class="fas fa-bolt fa-2x text-primary mb-2"></i>
+              <h5>Fast Search</h5>
+              <p class="small text-muted">Instant search results with typo tolerance</p>
+            </div>
+            <div class="col-md-4 mb-3">
+              <i class="fas fa-filter fa-2x text-primary mb-2"></i>
+              <h5>Smart Filtering</h5>
+              <p class="small text-muted">Filter by categories and refine your search</p>
+            </div>
+            <div class="col-md-4 mb-3">
+              <i class="fas fa-book fa-2x text-primary mb-2"></i>
+              <h5>Rich Content</h5>
+              <p class="small text-muted">Access detailed writeups and solutions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results-section" class="container d-none mb-5 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div id="hits"></div>
+        <div id="current-refinements" class="mt-3 text-center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer navbar fixed-bottom py-3" role="contentinfo">
+  <div class="container">
+    <div class="row w-100">
+      <div class="col-md-4">
+        <span class="navbar-text">
+          <a href="https://github.com/sarperavci/ctf-writeups-search" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
+        </span>
+      </div>
+      <div class="col-md-4 text-center">
+        <span class="navbar-text">
+          Powered by <a href="https://typesense.org" target="_blank" rel="noopener">Typesense</a>
+        </span>
+      </div>
+      <div class="col-md-4 text-md-right">
+        <span class="navbar-text">
+          <a href="#" id="theme-toggle">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <span class="ml-1">Theme</span>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="./src/app.js"></script>
+</body>
+
+</html>
