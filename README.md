@@ -1,6 +1,6 @@
 # 🔍 CTF Writeups Search
 
-A fast and efficient search engine for CTF (Capture The Flag) writeups and solutions, powered by Typesense. Search through a curated collection of 25,000+ CTF writeups with instant results and smart filtering.
+A fast and efficient search engine for CTF (Capture The Flag) writeups and solutions, powered by Typesense. Search through a curated collection of 35,000+ CTF writeups with instant results and smart filtering.
 
 View it live here: [https://ctfsearch.hackmap.win](https://ctfsearch.hackmap.win)
 
@@ -90,6 +90,8 @@ TYPESENSE_PORT=8108
 TYPESENSE_PROTOCOL=http
 TYPESENSE_SEARCH_ONLY_API_KEY=xyz
 ```
+
+Ensure you create a read-only API key with the `create_read_only_key.py` script and set both `TYPESENSE_API_KEY` and `TYPESENSE_SEARCH_ONLY_API_KEY` to the same value.
 
 ## Deployment
 
