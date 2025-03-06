@@ -31,18 +31,6 @@ let TYPESENSE_SERVER_CONFIG = {
   connectionTimeoutSeconds: 2
 };
 
-let TYPESENSE_SERVER_CONFIG2 = {
-  apiKey: "NlaKdOPtGgpCyW2MY7QYBdI12H1nHXh8",
-  nodes: [
-    {
-      host: process.env.TYPESENSE_HOST,
-      port: process.env.TYPESENSE_PORT,
-      protocol: process.env.TYPESENSE_PROTOCOL,
-    },
-  ],
-  connectionTimeoutSeconds: 2
-};
-
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: TYPESENSE_SERVER_CONFIG,
   additionalSearchParameters: {
@@ -178,7 +166,6 @@ search.addWidgets([
 search.start();
 
 document.addEventListener('DOMContentLoaded', () => {
-  fetchStats();
   
   const searchBox = document.querySelector('#searchbox');
   if (searchBox) {
@@ -243,35 +230,3 @@ document.addEventListener('DOMContentLoaded', () => {
     $(".row.mb-5").addClass("d-none");
   });
 });
-
-const fetchStats = (() => {
-  let statsPromise = null;
-  
-  return async () => {
-    if (!statsPromise) {
-      statsPromise = fetch(`${process.env.TYPESENSE_PROTOCOL}://${process.env.TYPESENSE_HOST}:${process.env.TYPESENSE_PORT}/collections/database_stats/documents/search`, {
-        method: 'POST',
-        headers: {
-          'X-TYPESENSE-API-KEY': TYPESENSE_SERVER_CONFIG2.apiKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          'q': '*',
-          'per_page': 1
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        const count = data.found; 
-        document.querySelectorAll('.total-writeups-count').forEach(el => {
-          el.textContent = count.toLocaleString();
-        });
-        return count;
-      })
-      .catch(error => {
-        console.error('Error fetching stats:', error);
-      });
-    }
-    return statsPromise;
-  };
-})();
